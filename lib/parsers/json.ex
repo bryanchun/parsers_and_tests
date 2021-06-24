@@ -14,7 +14,7 @@ defmodule Parsers.Json do
     ])
 
 
-  defp ascii_to_integer(ascii), do: ascii - 48
+  defp ascii_to_integer(ascii), do: ascii - ?0
   number =
     optional(string("-"))
     |> choice([
@@ -27,6 +27,7 @@ defmodule Parsers.Json do
     )
 
 
+  # TODO: test escaped characters in string
   quoted_string =
     ascii_char([?"])
     |> repeat(
@@ -36,6 +37,8 @@ defmodule Parsers.Json do
     |> ascii_char([?"])
     |> reduce({List, :to_string, []})
 
+  # TODO: add whitespace support
+  # https://en.wikipedia.org/wiki/ASCII
   defcombinatorp :kv_pair,
     quoted_string |> tag(:string) |> string(":") |> parsec(:value)
 
@@ -80,5 +83,6 @@ defmodule Parsers.Json do
       parsec(:array) |> tag(:array),
     ])
 
+  # TODO: try benchmarking?
   defparsec :parse, parsec(:value)
 end
