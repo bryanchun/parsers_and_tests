@@ -13,6 +13,14 @@ defmodule Parsers.Json do
       string("null"),
     ])
 
+  defcombinatorp :whitespace,
+    ignore(
+      repeat(
+        ascii_char([
+          ?\s, ?\n, ?\r, ?\t,
+        ])
+      )
+    )
 
   defp ascii_to_integer(ascii), do: ascii - ?0
   number =
@@ -28,8 +36,7 @@ defmodule Parsers.Json do
       string(".") |> times(integer(1), min: 1)
     )
 
-  # TODO: test escaped characters in string
-  quoted_string =
+  defcombinatorp :quoted_string,
     ascii_char([?"])
     |> repeat(
        lookahead_not(ascii_char([?"]))
@@ -38,42 +45,49 @@ defmodule Parsers.Json do
     |> ascii_char([?"])
     |> reduce({List, :to_string, []})
 
-  # TODO: add whitespace support
-  # https://en.wikipedia.org/wiki/ASCII
   defcombinatorp :kv_pair,
-    quoted_string |> tag(:string) |> string(":") |> parsec(:value)
+    parsec(:whitespace)
+    |> parsec(:quoted_string) |> tag(:string)
+    |> parsec(:whitespace)
+    |> string(":")
+    |> parsec(:value)
 
   defcombinatorp :object,
      string("{")
-     |> optional(
+     |> choice([
        parsec(:kv_pair)
        |> repeat(
           string(",")
           |> parsec(:kv_pair)
-       )
-     )
+       ),
+       parsec(:whitespace),
+     ])
      |> string("}")
 
   defcombinatorp :array,
     string("[")
-    |> optional(
+    |> choice([
       parsec(:value)
       |> repeat(
         string(",")
         |> parsec(:value)
-      )
-    )
+      ),
+      parsec(:whitespace),
+    ])
     |> string("]")
 
   defcombinatorp :value,
-    choice([
+    parsec(:whitespace)
+    |> choice([
       primitive,
       number |> tag(:number),
-      quoted_string |> tag(:string),
+      parsec(:quoted_string) |> tag(:string),
       parsec(:object) |> tag(:object),
       parsec(:array) |> tag(:array),
     ])
+    |> parsec(:whitespace)
 
+  # TODO: convert to elixir map and list to complete deserialization?
   # TODO: try benchmarking?
   defparsec :parse, parsec(:value)
 end
