@@ -21,6 +21,8 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/propcheck" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/libgraph" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/libgraph" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/ex_parameterized" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ex_parameterized" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="nimble_parsec" level="project" />
@@ -34,5 +36,7 @@
     <orderEntry type="library" name="benchee" level="project" />
     <orderEntry type="library" name="eqc_ex" level="project" />
     <orderEntry type="library" name="excoveralls" level="project" />
+    <orderEntry type="library" name="ex_parameterized" level="project" />
+    <orderEntry type="library" name="earmark" level="project" />
   </component>
 </module>

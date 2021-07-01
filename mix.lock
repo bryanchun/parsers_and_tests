@@ -1,4 +1,5 @@
 %{
+  "ex_parameterized": {:hex, :ex_parameterized, "1.3.7", "801f85fc4651cb51f11b9835864c6ed8c5e5d79b1253506b5bb5421e8ab2f050", [:mix], [], "hexpm", "1fb0dc4aa9e8c12ae23806d03bcd64a5a0fc9cd3f4c5602ba72561c9b54a625c"},
   "libgraph": {:hex, :libgraph, "0.13.3", "20732b7bafb933dcf7351c479e03076ebd14a85fd3202c67a1c197f4f7c2466b", [:mix], [], "hexpm", "78f2576eef615440b46f10060b1de1c86640441422832052686df53dc3c148c6"},
   "nimble_parsec": {:hex, :nimble_parsec, "1.1.0", "3a6fca1550363552e54c216debb6a9e95bd8d32348938e13de5eda962c0d7f89", [:mix], [], "hexpm", "08eb32d66b706e913ff748f11694b17981c0b04a33ef470e33e11b3d3ac8f54b"},
   "propcheck": {:hex, :propcheck, "1.4.0", "34ed3f05e7024be6ca4b45d48079cdcb0deb4ae1eed8b8405d3e14ed4b6c2c04", [:mix], [{:libgraph, "~> 0.13", [hex: :libgraph, repo: "hexpm", optional: false]}, {:proper, "~> 1.4", [hex: :proper, repo: "hexpm", optional: false]}], "hexpm", "305566952afba800e971e75a75526fb91e6c167ee3d78ceb67396848d90c6677"},
