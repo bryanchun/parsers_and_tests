@@ -10,7 +10,7 @@ defmodule Parsers.Json do
     choice([
       string("true"),
       string("false"),
-      string("null")
+      string("null"),
     ])
 
 
@@ -18,14 +18,15 @@ defmodule Parsers.Json do
   number =
     optional(string("-"))
     |> choice([
-      ascii_char([?0]) |> map({:ascii_to_integer, []}),
-      ascii_char([?1..?9]) |> map({:ascii_to_integer, []})
-        |> repeat(integer(1))
+      ascii_char([?0])
+        |> map({:ascii_to_integer, []}),
+      ascii_char([?1..?9])
+        |> map({:ascii_to_integer, []})
+        |> repeat(integer(1)),
     ])
     |> optional(
       string(".") |> times(integer(1), min: 1)
     )
-
 
   # TODO: test escaped characters in string
   quoted_string =
@@ -43,16 +44,6 @@ defmodule Parsers.Json do
     quoted_string |> tag(:string) |> string(":") |> parsec(:value)
 
   defcombinatorp :object,
-#    string("{")
-#    |> choice([
-#      string("}"),
-#      parsec(:kv_pair)
-#        |> repeat(
-#          string(",")
-#          |> parsec(:kv_pair)
-#        )
-#        |> string("}")
-#    ])
      string("{")
      |> optional(
        parsec(:kv_pair)

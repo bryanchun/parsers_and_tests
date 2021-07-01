@@ -15,8 +15,24 @@
       <excludeFolder url="file://$MODULE_DIR$/logs" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/nimble_parsec" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/nimble_parsec" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/proper" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/proper" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/propcheck" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/propcheck" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/libgraph" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/libgraph" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="nimble_parsec" level="project" />
+    <orderEntry type="library" name="propcheck" level="project" />
+    <orderEntry type="library" name="proper" level="project" />
+    <orderEntry type="library" name="libgraph" level="project" />
+    <orderEntry type="library" name="coverex" level="project" />
+    <orderEntry type="library" name="credo" level="project" />
+    <orderEntry type="library" name="dialyxir" level="project" />
+    <orderEntry type="library" name="ex_doc" level="project" />
+    <orderEntry type="library" name="benchee" level="project" />
+    <orderEntry type="library" name="eqc_ex" level="project" />
+    <orderEntry type="library" name="excoveralls" level="project" />
   </component>
 </module>
