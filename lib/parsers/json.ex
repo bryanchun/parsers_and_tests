@@ -88,6 +88,6 @@ defmodule Parsers.Json do
     |> parsec(:whitespace)
 
   # TODO: convert to elixir map and list to complete deserialization?
-  # TODO: try benchmarking?
+  # TODO: try benchmarking? https://github.com/michalmuskala/jason
   defparsec :parse, parsec(:value)
 end
