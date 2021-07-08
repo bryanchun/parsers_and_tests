@@ -39,6 +39,7 @@ defmodule Parsers.Json do
   defcombinatorp :quoted_string,
     ascii_char([?"])
     |> repeat(
+       # TODO: How to parse `\"`? Lookahead 2 characters?
        lookahead_not(ascii_char([?"]))
        |> utf8_char([])
     )
